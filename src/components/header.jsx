@@ -1,34 +1,33 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+
+import './style.css';
+
+const navLinks = [
+    {path: '/', name: 'Home'},
+    {path: '/lesson1', name: 'Lesson 1 (createStore, restore)'},
+    {path: '/lesson2', name: 'Lesson 2 (createApi)'},
+    {path: '/lesson3', name: 'Lesson 3 (sample, combine)'},
+    {path: '/lesson4', name: 'Lesson 4 (merge)'},
+    {path: '/lesson5', name: 'Lesson 5 (Guard)'},
+    {path: '/lesson6', name: 'Lesson 6 (Attach)'},
+    {path: '/lesson7', name: 'Lesson 7 (Split, Forward)'},
+    {path: '/lesson8', name: 'Lesson 8 (working with API)'},
+]
 
 export const Header = () => {
 
+    const {pathname} = useLocation();
+
     return <nav>
         <ul>
-            <li>
-                <Link to="/">Home</Link>
-            </li>
-            <li>
-                <Link to="/lesson1">Lesson 1 (createStore, restore)</Link>
-            </li>
-            <li>
-                <Link to="/lesson2">Lesson 2 (createApi)</Link>
-            </li>
-            <li>
-                <Link to="/lesson3">Lesson 3 (sample, combine)</Link>
-            </li>
-            <li>
-                <Link to="/lesson4">Lesson 4 (merge)</Link>
-            </li>
-            <li>
-                <Link to="/lesson5">Lesson 5 (Guard)</Link>
-            </li>
-            <li>
-                <Link to="/lesson6">Lesson 6 (Attach)</Link>
-            </li>
-            <li>
-                <Link to="/lesson7">Lesson 7 (Split, Forward)</Link>
-            </li>
+            {navLinks.map(item => {
+                const className = item.path === pathname ? "active" : "";
+
+                return <li key={item.path}>
+                    <Link to={item.path} className={className}>{item.name}</Link>
+                </li>
+            })}
         </ul>
     </nav>;
 }
