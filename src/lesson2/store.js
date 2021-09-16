@@ -6,6 +6,7 @@ export const $playerPosition = createStore(0)
 export const api = createApi($playerPosition, {
     moveLeft: (state, n) => state - n,
     moveRight: (state, n) => state + n,
+    reset: (_) => 0,
 })
 
 $playerPosition.watch(pos => {

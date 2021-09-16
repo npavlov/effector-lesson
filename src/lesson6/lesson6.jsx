@@ -1,5 +1,5 @@
 import React from "react";
-import {$attachedData, newEvent, setData,} from "./store";
+import {$attachedData, newEffect, setData,} from "./store";
 import {useStore} from "effector-react";
 
 export const Lesson6 = () => {
@@ -11,7 +11,7 @@ export const Lesson6 = () => {
         }
         }/></div>
         <div>Set other store (text): <input type="text" onChange={async e => {
-            await newEvent(e.target.value);
+            await newEffect(e.target.value);
         }
         }/></div>
         <div>Attached store: {store}</div>

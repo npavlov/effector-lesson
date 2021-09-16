@@ -10,7 +10,7 @@ const data = restore(setData, 0);
 
 const setAttachedStore = createEvent();
 
-export const newEvent = attach({
+export const newEffect = attach({
     effect: original,
     source: data,
     mapParams: (params, data) => {

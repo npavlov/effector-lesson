@@ -6,8 +6,8 @@ export const Lesson4 = () => {
     const store = useStore($store);
 
     return <div>
-        <div>Foo: <button onClick={foo}>Click me!</button></div>
-        <div>Bar: <button onClick={bar}>Click me!</button></div>
+        <div>Foo: <button onClick={() => {foo('foo')}}>Click me!</button></div>
+        <div>Bar: <button onClick={() => {bar('bar')}}>Click me!</button></div>
         <div>Current store: {store}</div>
     </div>;
 }

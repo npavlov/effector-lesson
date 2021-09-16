@@ -1,4 +1,6 @@
-const {createEffect, createStore, sample} = require("effector");
+const {createEffect, createStore, sample, createEvent} = require("effector");
+
+export const reset = createEvent();
 
 export const getCharactersFx = createEffect(async () => {
     const url = `api/character?page=1`;
@@ -24,7 +26,7 @@ export const getCharactersFx = createEffect(async () => {
 export const $characters = createStore([]).on(
     getCharactersFx.doneData,
     (_, items) => items,
-);
+).reset(reset);
 
 export const getCharacterFx = createEffect(async (characterId) => {
     const url = `api/character/${characterId}`;
@@ -45,5 +47,8 @@ export const $character = createStore(null).on(
     (_, {name, species, gender}) => ({name, species, gender}),
 );
 
-export const $isLoading = createStore('loading...').on(getCharactersFx.doneData, () => 'loaded!');
+export const $isLoading = createStore('loading...').
+on(getCharactersFx.doneData, () => 'loaded!').
+on(getCharactersFx.failData, () => 'loading error!');
+
 

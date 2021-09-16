@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useStore} from "effector-react";
-import {$character, $characters, $isLoading, getCharacterFx, getCharactersFx} from "./store";
+import {$character, $characters, $isLoading, getCharacterFx, getCharactersFx, reset} from "./store";
 
 export const Lesson8 = () => {
     const characters = useStore($characters);
@@ -11,6 +11,10 @@ export const Lesson8 = () => {
 
     useEffect( () => {
         getCharactersFx();
+
+        return () => {
+            reset();
+        }
     }, []);
 
     const onSelectCharacter = ({target}) => {
@@ -21,7 +25,7 @@ export const Lesson8 = () => {
         <div>{isLoading}</div>
         <div>
             <select name="select" onChange={onSelectCharacter}>
-                {characters.map(({name, id}) => <option value={id}>{name}</option>)}
+                {characters.map(({name, id}) => <option key={id} value={id}>{name}</option>)}
             </select>
         </div>
         {character && <div>

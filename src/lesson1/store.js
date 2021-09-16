@@ -7,8 +7,8 @@ export const increaseBalance = createEvent();
 export const decreaseBalance = createEvent();
 
 const balance = createStore(0)
-    .on(increaseBalance, (state, value) => state + 1000)
-    .on(decreaseBalance, (state, value) => state - 1000);
+    .on(increaseBalance, (state) => state + 1000)
+    .on(decreaseBalance, (state) => state - 1000);
 
 const username = restore(setName, 'Ivan'); //Равнозначны
 

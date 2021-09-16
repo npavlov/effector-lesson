@@ -13,8 +13,8 @@ export const $events = new createStore([]).on(signIn, (state, value) => {
 })
 
 sample({
-    clock: submitForm /* 1 */,
-    source: combine([$firstName, $lastName]) /* 2 */,
+    clock: submitForm,  // то что триггерит вызов
+    source: combine([$firstName, $lastName]), //  источник данных
     fn: (fullName, password) => {
         return `${fullName} - ${password}`
     } /* 3 */,
